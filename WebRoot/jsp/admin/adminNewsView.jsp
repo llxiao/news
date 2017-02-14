@@ -15,7 +15,7 @@
 		//调用后台方法，通过id查找新闻明细
 		News news = new News();
 		news = newsService.getNewsById(Integer.parseInt(id));
-		System.out.println(request.getContextPath());
+		request.setAttribute("news", news);
 	%>
 
 	<div class="main-content-right">
@@ -29,21 +29,21 @@
 					<div class="article-box">
 						<!--新闻的标题-->
 
-						<h1><%=news.getTitle()%></h1>
+						<h1>${news.title}</h1>
 						<div class="source-bar">
-							发布者：<%=news.getAuthor()%>
-							分类：<%=news.getCategoryName()%>
-							更新时间：<%=news.getCreateDate()%></div>
+							发布者：${news.author}
+							分类：${news.categoryName}
+							更新时间：${news.createDate}</div>
 						<div class="article-content">
-							<span class="article-summary"><b>摘要：</b><%=news.getSummary()%></span>
+							<span class="article-summary"><b>摘要：</b>${news.summary}</span>
 							
 							<%if(news.getPicPath()==null||news.getPicPath().equals("")){ %>
 								新闻图片:暂无
 							<%}else{ %>
-								<img  src="<%=request.getContextPath()%>/upload/<%=news.getPicPath()%>" width="200px" height="150px"/>
+								<img  src="<%=request.getContextPath()%>/upload/${news.picPath}" width="200px" height="150px"/>
 							<%} %>
 							<br />
-							<p><%=news.getContent()%></p>
+							<p>${news.content}</p>
 							<button type="button" class="page-btn" name="return" onclick="javascript:location.href='newsDetailList.jsp'">返回</button>
 						</div>
 						
