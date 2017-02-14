@@ -108,7 +108,7 @@
 					<tbody>
 					<input type="hidden" id="totalPageCount" name="totalPageCount" value="<%=totalPageCount%>"/>
 						<c:forEach var="news" items="${newsList}" varStatus="status">
-							<tr  class="admin-list-td-h2">
+							<tr <c:if test="${status.count%2==0 }">class="admin-list-td-h2"</c:if>>
 								<td>
 									<a href='adminNewsView.jsp?id=${news.id}'>
 										<c:out value="${news.title}"></c:out>
