@@ -4,6 +4,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@include file="../../common/common.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <script type="text/javascript">
 	function addNews() {
 		window.location = "newsDetailCreate.jsp";
@@ -98,35 +99,37 @@
 							currentPageNo = totalPageCount;
 						}	
 						List<News> newsList = newsService.getPageNewsList(currentPageNo, pageSize);
-						int i = 0;
+						request.setAttribute("newsList", newsList);
+						/* int i = 0;
 						for (News news : newsList) {
 							request.setAttribute("news", news);
-							i++;
+							i++; */
 					%>
 					<tbody>
 					<input type="hidden" id="totalPageCount" name="totalPageCount" value="<%=totalPageCount%>"/>
-						<tr <%if (i % 2 !=0 ) {%> class="admin-list-td-h2"
-							<%}%>>
-							<td>
-								<a href='adminNewsView.jsp?id=${news.id}'>
-									<c:out value="${news.title}"></c:out>
-								</a>
-							</td>
-							<td>
-								<c:out value="${news.author}" default="暂无"></c:out>
-							</td>
-							<td>
-								<%=new SimpleDateFormat("yyyy-MM-dd").format(news
-						.getCreateDate())%>
-							</td>
-							<td>
-								<a href='adminNewsCreate.jsp?id=${news.id}'>修改</a>
-								<a href="javascript:if(confirm('确认是否删除此新闻？')) location='adminNewsDel.jsp?id=${news.id}'">删除</a>
-							</td>
-						</tr>
+						<c:forEach var="news" items="${newsList}" varStatus="status">
+							<tr  class="admin-list-td-h2">
+								<td>
+									<a href='adminNewsView.jsp?id=${news.id}'>
+										<c:out value="${news.title}"></c:out>
+									</a>
+								</td>
+								<td>
+									<c:out value="${news.author}" default="暂无"></c:out>
+								</td>
+								<%-- <td>
+									<%=new SimpleDateFormat("yyyy-MM-dd").format(news.getCreateDate())%>
+								</td> --%>
+								<td><fmt:formatDate value="${news.createDate}" pattern="yyyy-MM-dd" /></td>
+								<td>
+									<a href='adminNewsCreate.jsp?id=${news.id}'>修改</a>
+									<a href="javascript:if(confirm('确认是否删除此新闻？')) location='adminNewsDel.jsp?id=${news.id}'">删除</a>
+								</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 					<%
-						}
+					//	}
 					%>
 				</table>
 				<div class="page-bar">
