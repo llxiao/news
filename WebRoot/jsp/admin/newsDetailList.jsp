@@ -7,28 +7,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <script type="text/javascript">
-	function addNews() {
-		window.location = "newsDetailCreate.jsp";
-	}
-
 	function page_nav(frm, num) {
 		frm.pageIndex.value=num;
 		frm.submit();
-	}
-	
-	
-	function jump_to(frm,pageno){
-	 	var regexp=/^[1-9]\d*$/;
-	 	var totalPage = document.getElementById("totalPageCount").value;
-		if(!regexp.test(pageno)){
-			alert("请输入 大于0的正整数!");
-			return false;
-		}else if((pageno-totalPage) > 0){
-			alert("总页码一共"+totalPage+"页，请输入正确的页码！");
-			return false;
-		}else{
-			page_nav(frm,pageno);
-		}  	
 	}
 </script>
 <%
@@ -130,30 +111,12 @@
 					//	}
 					%>
 				</table>
-				<div class="page-bar">
-					<ul class="page-num-ul clearfix">
-						<li>共
-							<%=totalCount %>条记录&nbsp;&nbsp;
-							<%=currentPageNo %>/
-							<%=totalPageCount %>页</li>&nbsp;&nbsp;
-						<%if(currentPageNo > 1){ %>
-						<a href="javascript:page_nav(document.forms[0],1);">首页</a>
-						<a href="javascript:page_nav(document.forms[0],<%=currentPageNo-1%>);">上一页</a>
-						<%}
-						if(currentPageNo<totalPageCount){
-						 %>
-						<a href="javascript:page_nav(document.forms[0],<%=currentPageNo+1%>);">下一页</a>
-						<a href="javascript:page_nav(document.forms[0],<%=totalPageCount%>);">最后一页</a>
-						<%} %>&nbsp;&nbsp;
-					</ul>
-					<span class="page-go-form"><label>跳转至</label> <input
-						type="text" name="inputPage" id="inputPage" class="page-key" />页
-						<button type="button" class="page-btn"
-							onclick="jump_to(document.forms[0],document.getElementById('inputPage').value)">GO</button>
-					</span>
-				</div>
+				<c:import url="rollPage.jsp">
+					<c:param name="totalCount" value="<%=Integer.toString(totalCount) %>"></c:param>
+					<c:param name="currentPageNo" value="<%=Integer.toString(currentPageNo) %>"></c:param>
+					<c:param name="totalPageCount" value="<%=Integer.toString(totalPageCount) %>"></c:param>
+				</c:import>
 			</div>
 		</div>
 	</div>
-</div>
 </div>
