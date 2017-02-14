@@ -1,12 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@page import="com.pb.news.entity.NewsCategory"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-
+<%@include file="../../common/common.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 	<head>
 		<link href="<%=request.getContextPath() %>/css/common.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="<%=request.getContextPath() %>/ckeditor/ckeditor.js"></script>
 	</head>
 <body>
+<%
+	 //取得新闻分类列表
+   List<NewsCategory> newsCategoryList= new ArrayList<NewsCategory>();
+   newsCategoryList=newsCategoryService.getNewsCategoryList();
+   request.setAttribute("newsCategoryList", newsCategoryList);
+ %>
 <form name ="dataFrm" id="dataFrm" action="doAdd.jsp" method="post" enctype="multipart/form-data">
 	<table  width="100%" border="0" cellspacing="5" cellpadding="0">
 		<thead>
@@ -18,12 +26,11 @@
 				<td style="text-align:left;">
 				<!-- 列出所有的新闻分类 -->
 					<select name="categoryId">
-	        			<option value="1">国内</option>
-	        			<option value="2">国际</option>
-	        			<option value="3">娱乐</option>
-	        			<option value="4">军事</option>
-	        			<option value="5">财经</option>
-	        			<option value="6">天气</option>
+	        			<c:if test="${newsCategoryList != null }">
+							<c:forEach var="newsCategory" items="${newsCategoryList }">
+								<option value="${newsCategory.id }">${newsCategory.name}</option>
+							</c:forEach>
+						</c:if>
 	        		</select>
 				</td>
 			</tr>
