@@ -13,14 +13,8 @@
 <%
    String newsId = request.getParameter("id");
    int id = Integer.parseInt(newsId);
-   List<News> newsList = newsService.getNewsList();
-   News currentNews = null;
-   for(News news:newsList){
-   		if(news.getId()==id){
-   			currentNews = news;
-   			break;
-   		}
-   }
+   News news = newsService.getNewsById(id);
+   
   %>
    <form name ="dataFrm" id="dataFrm" action="doEdit.jsp" method="post" enctype="multipart/form-data">
 	<table  width="100%" border="0" cellspacing="5" cellpadding="0">
@@ -46,26 +40,26 @@
 				<td style="text-align:right;" class="text_tabledetail2">标题</td>
 				<td style="text-align:left;">
 				<!-- 隐藏域存放新闻id -->
-				<input type="text" name="newsId" id="newsId"value="<%=currentNews.getId()%>"/>
+				<input type="text" name="newsId" id="newsId"value="<%=news.getId()%>"/>
 				<!-- 隐藏域存放新闻id -->
-				<input type="text" name="title" value="<%=currentNews.getTitle()%>"/>
+				<input type="text" name="title" value="<%=news.getTitle()%>"/>
 				
 				</td>
 			</tr>
 			<tr>
 				<td style="text-align:right;" class="text_tabledetail2">作者</td>
-				<td style="text-align:left;"><input type="text" name="author" value="<%=currentNews.getAuthor()%>"/></td>
+				<td style="text-align:left;"><input type="text" name="author" value="<%=news.getAuthor()%>"/></td>
 			</tr>
 			
 			<tr>
 				<td style="text-align:right;" class="text_tabledetail2">摘要</td>
-				<td style="text-align:left;"><textarea id="summary" name="summary" rows="8" cols="50"><%=currentNews.getSummary()%></textarea></td>
+				<td style="text-align:left;"><textarea id="summary" name="summary" rows="8" cols="50"><%=news.getSummary()%></textarea></td>
 			</tr>
 			<tr>
 				<td style="text-align:right;" class="text_tabledetail2">内容</td>
 				<td style="text-align:left;">
 				<div id="xToolbar"></div>
-				<textarea id="newscontent" name="newscontent" rows="8" cols="30" class="ckeditor"><%=currentNews.getContent()%></textarea></td>
+				<textarea id="newscontent" name="newscontent" rows="8" cols="30" class="ckeditor"><%=news.getContent()%></textarea></td>
 			</tr>
 			<tr>
 				<td style="text-align:right;" class="text_tabledetail2">上传图片 </td>
