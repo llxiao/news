@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../../common/common.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -29,13 +30,13 @@
 					<div class="article-box">
 						<!--新闻的标题-->
 
-						<h1>${news.title}</h1>
+						<h1><c:out value="${news.title}"></c:out></h1>
 						<div class="source-bar">
-							发布者：${news.author}
-							分类：${news.categoryName}
-							更新时间：${news.createDate}</div>
+							发布者：<c:out value="${news.author}"></c:out>
+							分类：<c:out value="${news.categoryName}"></c:out>
+							更新时间：<c:out value="${news.createDate}"></c:out></div>
 						<div class="article-content">
-							<span class="article-summary"><b>摘要：</b>${news.summary}</span>
+							<span class="article-summary"><b>摘要：</b><c:out value="${news.summary}"></c:out></span>
 							
 							<%if(news.getPicPath()==null||news.getPicPath().equals("")){ %>
 								新闻图片:暂无
@@ -43,7 +44,7 @@
 								<img  src="<%=request.getContextPath()%>/upload/${news.picPath}" width="200px" height="150px"/>
 							<%} %>
 							<br />
-							<p>${news.content}</p>
+							<p><c:out value="${news.content}"></c:out></p>
 							<button type="button" class="page-btn" name="return" onclick="javascript:location.href='newsDetailList.jsp'">返回</button>
 						</div>
 						
