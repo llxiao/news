@@ -30,4 +30,6 @@ public interface NewsService {
 	
 	//获取分页列表
 	public List<News> getPageNewsList(int pageNo,int pageSize);
+	
+
 }

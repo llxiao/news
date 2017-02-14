@@ -94,4 +94,8 @@ public class NewsServiceImpl implements NewsService {
 		return newsDao.getPageNewsList(pageNo, pageSize);
 	}
 
+
+
+
+
 }

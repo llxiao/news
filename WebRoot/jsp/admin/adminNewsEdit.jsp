@@ -15,6 +15,11 @@
    int id = Integer.parseInt(newsId);
    News news = newsService.getNewsById(id);
    
+   //动态获取新闻分类信息
+   //取得新闻分类列表
+   
+   //取得要修改的新闻信息明细
+   
   %>
    <form name ="dataFrm" id="dataFrm" action="doEdit.jsp" method="post" enctype="multipart/form-data">
 	<table  width="100%" border="0" cellspacing="5" cellpadding="0">
