@@ -109,10 +109,10 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		try {
 			String sql = "update  news_detail set title=?,author=?,"
 					+ "summary=?,content=?,modifyDate=?,"
-					+ "picPath=? where id=?";
+					+ "picPath=?,categoryId=? where id=?";
 			Object[] params = { news.getTitle(), news.getAuthor(),
 					news.getSummary(), news.getContent(), news.getModifyDate(),
-					news.getPicPath(), news.getId() };
+					news.getPicPath(),news.getCategoryId(), news.getId() };
 			if (this.getConnection()) {
 				int i = this.executeUpdate(sql, params);
 				// （4）处理执行结果

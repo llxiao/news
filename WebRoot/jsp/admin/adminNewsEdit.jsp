@@ -54,7 +54,7 @@
 				<td style="text-align:right;" class="text_tabledetail2">标题</td>
 				<td style="text-align:left;">
 				<!-- 隐藏域存放新闻id -->
-				<input type="text" name="newsId" id="newsId"value="${news.id}%>"/>
+				<input type="hidden" name="newsId" id="newsId"value="${news.id}"/>
 				<!-- 隐藏域存放新闻id -->
 				<input type="text" name="title" value="${news.title}"/>
 				
@@ -76,8 +76,16 @@
 				<textarea id="newscontent" name="newscontent" rows="8" cols="30" class="ckeditor">${news.content}</textarea></td>
 			</tr>
 			<tr>
-				<td style="text-align:right;" class="text_tabledetail2">上传图片 </td>
-				<td style="text-align:left;"><input type="file" name="picPath" value=""/></td>
+				<c:if test="${news.picPath == null }">
+					<td style="text-align:right;" class="text_tabledetail2">上传图片 </td>
+					<td style="text-align:left;"><input type="file" name="picPath" value=""/></td>
+				</c:if>	
+				<c:if test="${news.picPath != null }">
+					<td style="text-align:right;" class="text_tabledetail2">图片</td>
+					<td style="text-align:left;">
+						<img  src="<%=request.getContextPath()%>/upload/${news.picPath}" width="200px" height="150px"/>
+					</td>
+				</c:if>	
 			</tr>
 			<tr>
 				<td style="text-align:center;" colspan="2">

@@ -1,4 +1,5 @@
-﻿<%@page import="com.pb.news.util.PageSupport"%>
+﻿<%@page import="com.pb.news.entity.NewsCategory"%>
+<%@page import="com.pb.news.util.PageSupport"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.pb.news.entity.News"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
@@ -30,6 +31,12 @@
 		}  	
 	}
 </script>
+<%
+	 //取得新闻分类列表
+   List<NewsCategory> newsCategoryList= new ArrayList<NewsCategory>();
+   newsCategoryList=newsCategoryService.getNewsCategoryList();
+   request.setAttribute("newsCategoryList", newsCategoryList);
+ %>
 <div class="main-content-right">
 	<!--即时新闻-->
 	<div class="main-text-box">
@@ -39,20 +46,11 @@
 					<div>
 						新闻分类：
 						<select name="categoryId">
-							<option value="0">全部</option>
-
-							<option value='1'>国内</option>
-
-							<option value='2'>国际</option>
-
-							<option value='3'>娱乐</option>
-
-							<option value='4'>军事</option>
-
-							<option value='5'>财经</option>
-
-							<option value='6'>天气</option>
-
+							<c:if test="${newsCategoryList != null }">
+							<c:forEach var="newsCategory" items="${newsCategoryList }">
+								<option value="${newsCategory.id }">${newsCategory.name}</option>
+							</c:forEach>
+						</c:if>
 						</select> 新闻标题<input type="text" name="title" id="title" value='' />
 						<button type="submit" class="page-btn">GO</button>
 						<button type="button" onclick="addNews();" class="page-btn">增加</button>

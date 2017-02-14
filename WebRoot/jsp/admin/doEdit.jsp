@@ -56,8 +56,8 @@
 				if (fieldName.equals("title")) {
 					news.setTitle(item.getString("UTF-8"));
 				} else if (fieldName.equals("categoryId")) {
-					news.setCategoryId(Integer.parseInt(item
-							.getString()));
+					System.out.println(item.getString());
+					news.setCategoryId(Integer.parseInt(item.getString()));
 				} else if (fieldName.equals("summary")) {
 					news.setSummary(item.getString("UTF-8"));
 				} else if (fieldName.equals("newscontent")) {
