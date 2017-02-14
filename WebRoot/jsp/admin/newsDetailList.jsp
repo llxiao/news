@@ -85,7 +85,7 @@
 							i++; */
 					%>
 					<tbody>
-					<input type="hidden" id="totalPageCount" name="totalPageCount" value="<%=totalPageCount%>"/>
+					
 						<c:forEach var="news" items="${newsList}" varStatus="status">
 							<tr <c:if test="${status.count%2==0 }">class="admin-list-td-h2"</c:if>>
 								<td>
@@ -107,10 +107,9 @@
 							</tr>
 						</c:forEach>
 					</tbody>
-					<%
-					//	}
-					%>
+
 				</table>
+				<input type="hidden" id="totalPageCount" name="totalPageCount" value="<%=totalPageCount%>"/>
 				<c:import url="rollPage.jsp">
 					<c:param name="totalCount" value="<%=Integer.toString(totalCount) %>"></c:param>
 					<c:param name="currentPageNo" value="<%=Integer.toString(currentPageNo) %>"></c:param>

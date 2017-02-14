@@ -38,12 +38,14 @@
 							更新时间：<fmt:formatDate value="${news.createDate}" pattern="yyyy-MM-dd" /></div>
 						<div class="article-content">
 							<span class="article-summary"><b>摘要：</b><c:out value="${news.summary}"></c:out></span>
-							
-							<%if(news.getPicPath()==null||news.getPicPath().equals("")){ %>
-								新闻图片:暂无
-							<%}else{ %>
-								<img  src="<%=request.getContextPath()%>/upload/${news.picPath}" width="200px" height="150px"/>
-							<%} %>
+							<c:choose>
+								<c:when test="${news.picPath==null || news.picPath.equals('') }">
+									新闻图片:暂无
+								</c:when>
+								<c:otherwise>
+									<img  src="<%=request.getContextPath()%>/upload/${news.picPath}" width="200px" height="150px"/>
+								</c:otherwise>
+							</c:choose>
 							<br />
 							<p><c:out value="${news.content}" escapeXml="false"></c:out></p>
 							<button type="button" class="page-btn" name="return" onclick="javascript:location.href='newsDetailList.jsp'">返回</button>
