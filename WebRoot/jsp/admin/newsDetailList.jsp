@@ -101,7 +101,7 @@
 								<td><fmt:formatDate value="${news.createDate}" pattern="yyyy-MM-dd" /></td>
 								<td>
 									<a href='adminNewsEdit.jsp?id=${news.id}'>修改</a>
-									<a href="javascript:if(confirm('确认是否删除此新闻？')) location='adminNewsDel.jsp?id=${news.id}'">删除</a>
+									<a href="javascript:if(confirm('确认是否删除此新闻？')) location='<%=request.getContextPath() %>/servlet/DelNewsServlet?id=${news.id}'">删除</a>
 								</td>
 							</tr>
 						</c:forEach>

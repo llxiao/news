@@ -15,7 +15,7 @@
    newsCategoryList=newsCategoryService.getNewsCategoryList();
    request.setAttribute("newsCategoryList", newsCategoryList);
  %>
-<form name ="dataFrm" id="dataFrm" action="doAdd.jsp" method="post" enctype="multipart/form-data">
+<form name ="dataFrm" id="dataFrm" action="<%=request.getContextPath() %>/servlet/AddNewsServlet" method="post" enctype="multipart/form-data">
 	<table  width="100%" border="0" cellspacing="5" cellpadding="0">
 		<thead>
 			<tr><td align="center" colspan="2" class="text_tabledetail2">增加新闻</td></tr>
