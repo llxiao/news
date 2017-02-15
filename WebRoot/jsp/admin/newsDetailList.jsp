@@ -7,9 +7,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <script type="text/javascript">
-	function page_nav(frm, num) {
-		frm.pageIndex.value=num;
-		frm.submit();
+	function addNews() {
+		window.location = "newsDetailCreate.jsp";
 	}
 </script>
 <%
