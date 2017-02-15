@@ -43,7 +43,7 @@ public class AddNewsServlet extends HttpServlet {
 			throws ServletException, IOException {
 		NewsService newsService = new NewsServiceImpl();
 		// 接收增加的新闻信息，并调用后台方法，将新闻信息插入数据库
-		request.setCharacterEncoding("utf-8");
+		//request.setCharacterEncoding("utf-8");
 		boolean bRet = false;
 		boolean bUpload = false;
 		String uploadFileName = "";
