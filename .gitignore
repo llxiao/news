@@ -4,3 +4,6 @@
 .classpath
 .project
 src/com/pb/news/service/impl/TestNewsService.java
+
+.settings/org.eclipse.jdt.core.prefs
+.settings/org.eclipse.jdt.core.prefs

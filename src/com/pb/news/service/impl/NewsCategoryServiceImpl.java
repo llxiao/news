@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.pb.news.dao.NewsCategoryDao;
 import com.pb.news.dao.impl.NewsCategoryDaoImpl;
-import com.pb.news.dao.impl.NewsDaoImpl;
 import com.pb.news.entity.NewsCategory;
 import com.pb.news.service.NewsCategoryService;
 

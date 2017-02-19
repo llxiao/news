@@ -14,6 +14,7 @@ public class ConfigManager {
 		String configFile="database.properties";
 		properties=new Properties();
 		InputStream in=ConfigManager.class.getClassLoader().getResourceAsStream(configFile);
+		System.out.println(in);
 		try {
 			properties.load(in);
 			in.close();
